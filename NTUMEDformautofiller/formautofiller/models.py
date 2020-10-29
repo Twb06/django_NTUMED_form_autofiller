@@ -31,7 +31,7 @@ class Student(models.Model):
     """Model representing a student."""
     name = models.CharField(
         max_length = 10,
-        primary_key = True,
+        #primary_key = True,
         blank = False,
         help_text = "Enter your name"
     )
