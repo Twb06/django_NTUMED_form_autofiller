@@ -31,7 +31,7 @@ class Student(models.Model):
     """Model representing a student."""
     name = models.CharField(
         max_length = 10,
-        primary_key = True,
+        #primary_key = True,
         blank = False,
         help_text = "Enter your name"
     )
@@ -90,7 +90,7 @@ class Form(models.Model):
         help_text = "Enter form url"
     )
 
-    #student = models.OneToOneField("Student", on_delete = models.SET_NULL, null=True)
+    student = models.OneToOneField("Student", on_delete = models.SET_NULL, null=True)
 
     def __str__(self):
         """String for representing the Model object."""
