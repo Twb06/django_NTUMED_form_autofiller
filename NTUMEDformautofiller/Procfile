@@ -1,1 +1,1 @@
-web: gunicorn NTUMEDformautofiller NTUMEDformautofiller.wsgi --log-file -
+web: gunicorn formautofiller.wsgi --log-file -
