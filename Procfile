@@ -1,1 +1,1 @@
-web: gunicorn NTUMEDformautofiller NTUMEDformautofiller.wsgi:application
+web: gunicorn NTUMEDformautofiller NTUMEDformautofiller.wsgi
