@@ -68,7 +68,7 @@ class Student(models.Model):
         help_text = "Enter your email"
     )
 
-    preference = models.ForeignKey("Preference", on_delete = models.SET_NULL, null=True)
+    #preference = models.ForeignKey("Preference", on_delete = models.SET_NULL, null=True)
 
     def __str__(self):
         """String for representing the Model object."""
@@ -90,7 +90,7 @@ class Form(models.Model):
         help_text = "Enter form url"
     )
 
-    student = models.OneToOneField("Student", on_delete = models.SET_NULL, null=True)
+    #student = models.OneToOneField("Student", on_delete = models.SET_NULL, null=True)
 
     def __str__(self):
         """String for representing the Model object."""
