@@ -15,12 +15,14 @@ def autofiller(url):
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
         
+        chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+
         chrome_options = Options()
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         #options.add_argument("--headless")
 
-        chrome_options.binary_location = GOOGLE_CHROME_PATH
+        chrome_options.binary_location = chrome_bin
         
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
         """webDriverServer = service.Service('./operadriver_win64/operadriver.exe')
