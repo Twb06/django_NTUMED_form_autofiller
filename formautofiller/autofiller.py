@@ -46,10 +46,12 @@ def autofiller(url):
         button_select_list = browser.find_elements_by_xpath(button_xpath)
         for button_select in button_select_list:
             if not button_select.is_selected():
+                browser.execute_script("arguments[0].scrollIntoView();", button_select)
                 button_select.click()
 
         show_value_button_list = browser.find_elements_by_xpath("//button[@class='btn btn-default']")
         for button_select in show_value_button_list:
+            browser.execute_script("arguments[0].scrollIntoView();", button_select)
             button_select.click()
 
         html_source = browser.page_source
