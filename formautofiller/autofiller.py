@@ -39,7 +39,7 @@ def autofiller(url):
 
         browser.get(url)
         html_source = browser.page_source
-        soup = BeautifulSoup(html_source, 'html5lib')
+        
 
         button_xpath = "//input[@value='Male' and @type='radio']"
 
@@ -48,11 +48,17 @@ def autofiller(url):
             if not button_select.is_selected():
                 button_select.click()
 
+        show_value_button_list = browser.find_elements_by_xpath("//button[@class='btn btn-default']")
+        for button_select in show_value_button_list:
+            button_select.click()
+
         html_source = browser.page_source
+        soup = BeautifulSoup(html_source, 'html5lib')
+        show_value = soup.find("p", class_ = "radiobutton").text + soup.find("p", class_ = "groupradiobutton").text
 
         time.sleep(5)
 
-        return html_source
+        return show_value
 
     except Exception as e:
         raise e
