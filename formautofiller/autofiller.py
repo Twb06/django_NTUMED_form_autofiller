@@ -12,7 +12,18 @@ import os
 
 def autofiller(url):
     try:
-        webDriverServer = service.Service('./operadriver_win64/operadriver.exe')
+        GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+        CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+        
+        chrome_options = Options()
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
+        #options.add_argument("--headless")
+
+        chrome_options.binary_location = GOOGLE_CHROME_PATH
+        
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        """webDriverServer = service.Service('./operadriver_win64/operadriver.exe')
         webDriverServer.start()
 
         capabilities = {
@@ -21,7 +32,7 @@ def autofiller(url):
             }
         }
 
-        browser = webdriver.Remote(webDriverServer.service_url, webdriver.DesiredCapabilities.OPERA)
+        browser = webdriver.Remote(webDriverServer.service_url, webdriver.DesiredCapabilities.OPERA)"""
         #browser.maximize_window()
 
         browser.get(url)
