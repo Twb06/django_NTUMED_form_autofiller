@@ -19,7 +19,7 @@ def user_input(request):
         user_autofill_url = form.cleaned_data["autofill_url"]
         user_clinical_teacher = form.cleaned_data["clinical_teacher"]
 
-        result = autofiller(user_autofill_url)
+        result = autofiller(user_autofill_url, user_clinical_teacher)
         return HttpResponse(result)
         # redirect to a new URL:
         """return HttpResponseRedirect(reverse('all-borrowed') )"""

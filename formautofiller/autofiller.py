@@ -10,7 +10,89 @@ import re
 import time
 import os
 
-def autofiller(url):
+def buttonSelectionClick(button_xpath):   
+    # fill in evaluation form
+    # select "A_perfect"(button_xpath = "//input[@value='2']") for all radio buttons
+    button_select_list = browser.find_elements_by_xpath(button_xpath)
+    for button_select in button_select_list:
+        if not button_select.is_selected():
+            button_select.click()
+    
+    return
+
+def nextPage():
+    # next page
+    next_page_button = browser.find_element_by_xpath("//button[@name='submit-btn-saverecord']")
+    browser.execute_script("arguments[0].scrollIntoView();", next_page_button)
+    next_page_button.click()
+    time.sleep(0.2)
+    
+    return
+    
+def previousPage():
+    # previous page
+    previous_page_button = browser.find_element_by_xpath("//button[@name='submit-btn-saveprevpage']")
+    browser.execute_script("arguments[0].scrollIntoView();", previous_page_button)
+    previous_page_button.click()
+    time.sleep(0.2)
+    
+    return
+
+"""def manualFillin(courses_name_list, n_course):
+    while True:
+        try:
+            manual_fillin_confirm_input = input("Manually fillin?(y/n)").lower()
+        # rule out unexpected input, and restart the process
+        except:
+            print("Error! Please enter again!")
+            time.sleep(1.5)
+            os.system("cls")
+
+        # user confirm
+        if manual_fillin_confirm_input == "y":
+            break
+        elif manual_fillin_confirm_input == "n":
+            time.sleep(1.5)
+            os.system("cls")
+            
+            return
+        # rule out unexpected input, and restart the process
+        else:
+            print("Undefined character! Please enter again!")
+            time.sleep(1.5)
+            os.system("cls")
+            continue
+    
+    for course_name in courses_name_list:
+        print(course_name)
+    manual_fillin_page_list = input("\n\nWhich course do you want to fill in on your own? eg. type\"1 2 4 6\"\n").split()
+    # turn to target page
+    for manual_fillin_page in manual_fillin_page_list:
+        target_page = int(manual_fillin_page)
+
+        while True:
+            # reload current page html source
+            html_source = browser.page_source
+            soup = BeautifulSoup(html_source, 'html5lib')
+            current_page = int( soup.find(id = "surveypagenum").string.split()[1] )
+            if current_page == target_page:
+                input("If you finished the page, press any button to continue...")
+                if manual_fillin_page == manual_fillin_page_list[-1]:
+                    if target_page != n_course:
+                        target_page = n_course
+                        continue
+                    else:
+                        break
+                else:
+                    break
+            elif current_page > target_page:
+                previousPage()
+                continue
+            elif current_page < target_page:
+                nextPage()
+                continue
+"""
+def autofiller(url, teacher_index_input):
     try:
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -25,42 +107,67 @@ def autofiller(url):
         chrome_options.binary_location = chrome_bin
         
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-        """webDriverServer = service.Service('./operadriver_win64/operadriver.exe')
-        webDriverServer.start()
 
-        capabilities = {
-            'operaOptions': {
-                'binary': 'C:/Program Files (x86)/Opera/launcher.exe'
-            }
-        }
-
-        browser = webdriver.Remote(webDriverServer.service_url, webdriver.DesiredCapabilities.OPERA)"""
-        #browser.maximize_window()
-
+        # open form
         browser.get(url)
         html_source = browser.page_source
-        
-
-        button_xpath = "//input[@value='Male' and @type='radio']"
-
-        button_select_list = browser.find_elements_by_xpath(button_xpath)
-        for button_select in button_select_list:
-            if not button_select.is_selected():
-                browser.execute_script("arguments[0].scrollIntoView();", button_select)
-                button_select.click()
-
-        show_value_button_list = browser.find_elements_by_xpath("//button[@class='btn btn-default']")
-        for button_select in show_value_button_list:
-            browser.execute_script("arguments[0].scrollIntoView();", button_select)
-            button_select.click()
-
-        html_source = browser.page_source
         soup = BeautifulSoup(html_source, 'html5lib')
-        show_value = soup.find("p", class_ = "radiobutton").text + soup.find("p", class_ = "groupradiobutton").text
+        time.sleep(2)
 
-        time.sleep(5)
+        # select teacher
+        teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"
+        # get total course num
+        n_course = int( soup.find(id = "surveypagenum").string.split()[-1] )
+        courses_name_list = []
 
-        return show_value
+        # grades for evaluation button xpath
+        #     "N/A"(button_xpath = "//input[@value='1']")
+        #     "A_perfect"(button_xpath = "//input[@value='2']")
+        #     "B_good"(button_xpath = "//input[@value='3']")
+        #     "C_normal"(button_xpath = "//input[@value='4']")
+        evaluation_button_xpath = "//td[@class='data choicematrix']//input[@value='2' and @type='radio']"
+
+        # fill in form
+        # loop pages of courses while recording names of all courses, 
+        # which can be manually fill in in the end of the process
+        for course_index in range(1, n_course + 1):
+            # reload current page html source
+            html_source = browser.page_source
+            soup = BeautifulSoup(html_source, 'html5lib')
+            current_page = int( soup.find(id = "surveypagenum").string.split()[1] )
+            
+            # prevent error from form which was not completed
+            if course_index < current_page:
+                continue
+            
+            # record names of all courses
+            course_name = soup.find("td", class_ = "header toolbar").find_all(text = True)[0]
+            courses_name_list.append( course_name )
+            
+            # auto fillin
+            buttonSelectionClick(evaluation_button_xpath)
+            # exclude bedside learning courses
+            if "分組老師" in course_name:
+                buttonSelectionClick(teacher_button_xpath)
+            
+            # next page, preventing sent out in the end
+            if course_index == n_course:
+                break
+            else:
+                nextPage()
+
+        # manually fillin (not open in alpha_v_1.0)
+        """manualFillin(courses_name_list, n_course)"""
+
+        # sent (not open in alpha_v_1.0)
+        """sent_input = input("Press any button to sent...")
+        nextPage()
+
+        finish_button = browser.find_element_by_xpath("//button[@class = 'jqbuttonmed ui-button ui-corner-all ui-widget']")
+        finish_button.click()"""
+
+        courses_name_list.append("----Alpha v 1.0----Please manually check your form!")
+        return courses_name_list
 
     except Exception as e:
         raise e
