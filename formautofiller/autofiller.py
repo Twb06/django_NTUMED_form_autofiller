@@ -118,6 +118,7 @@ def autofiller(url, teacher_index_input):
         teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"
         # get total course num
         n_course = int( soup.find(id = "surveypagenum").string.split()[-1] )
+        # list for storing courses' name
         courses_name_list = []
 
         # grades for evaluation button xpath
@@ -165,11 +166,18 @@ def autofiller(url, teacher_index_input):
 
         finish_button = browser.find_element_by_xpath("//button[@class = 'jqbuttonmed ui-button ui-corner-all ui-widget']")
         finish_button.click()"""
+        
+        # setting return list for HttpRespond in views.py
+        http_respond_list = ["<p>Success filling:</p><ol>"]
+        for courses_name in courses_name_list:
+            http_respond_list.append("<li>" + courses_name + "</li>")
+        http_respond_list.append("</ol>")
+        http_respond_list.append("<p>----Alpha v 1.0----</p>")
+        http_respond_list.append("<a href=" + url + ">Please manually check and send your form!</a>")
 
-        courses_name_list.append("----Alpha v 1.0----Please manually check your form!")
-        return courses_name_list
+        return http_respond_list
 
     except Exception as e:
-        raise e
+        #raise e
         pass
     
