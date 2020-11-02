@@ -1,1 +1,1 @@
-web: gunicorn NTUMEDformautofiller.wsgi --log-file -
+web: gunicorn NTUMEDformautofiller.wsgi --timeout 30 --log-file -
