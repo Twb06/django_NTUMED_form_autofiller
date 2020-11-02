@@ -14,8 +14,14 @@ def buttonSelectionClick(button_xpath, browser):
     # fill in evaluation form
     # select "A_perfect"(button_xpath = "//input[@value='2']") for all radio buttons
     button_select_list = browser.find_elements_by_xpath(button_xpath)
+    scroll_into_view_status = False
     for button_select in button_select_list:
         if not button_select.is_selected():
+            # scroll the element into view to interact, 
+            # and constrain it to run only once to save time
+            if not scroll_into_view_status:
+                browser.execute_script("arguments[0].scrollIntoView();", button_select)
+                scroll_into_view_status = True
             button_select.click()
     
     return
@@ -25,7 +31,7 @@ def nextPage(browser):
     next_page_button = browser.find_element_by_xpath("//button[@name='submit-btn-saverecord']")
     browser.execute_script("arguments[0].scrollIntoView();", next_page_button)
     next_page_button.click()
-    time.sleep(0.2)
+    time.sleep(0.1)
     
     return
     
@@ -34,7 +40,7 @@ def previousPage(browser):
     previous_page_button = browser.find_element_by_xpath("//button[@name='submit-btn-saveprevpage']")
     browser.execute_script("arguments[0].scrollIntoView();", previous_page_button)
     previous_page_button.click()
-    time.sleep(0.2)
+    time.sleep(0.1)
     
     return
 
@@ -112,7 +118,7 @@ def autofiller(url, teacher_index_input):
         browser.get(url)
         html_source = browser.page_source
         soup = BeautifulSoup(html_source, 'html5lib')
-        time.sleep(2)
+        time.sleep(1)
 
         # select teacher
         teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"
