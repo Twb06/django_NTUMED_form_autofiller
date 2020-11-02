@@ -157,6 +157,10 @@ def autofiller(url, teacher_index_input):
             else:
                 nextPage(browser)
 
+        # save and let user check result and manually sent form (in alpha_v_1.0)
+        save_button = browser.find_element_by_xpath("//button[@name= 'submit-btn-savereturnlater']")
+        save_button.click()
+        
         # manually fillin (not open in alpha_v_1.0)
         """manualFillin(courses_name_list, n_course)"""
 
