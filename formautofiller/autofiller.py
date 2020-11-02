@@ -106,7 +106,7 @@ def autofiller(url, teacher_index_input):
 
         chrome_options.binary_location = chrome_bin
         
-        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        global browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
         # open form
         browser.get(url)
