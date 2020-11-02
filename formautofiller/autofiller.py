@@ -10,7 +10,7 @@ import re
 import time
 import os
 
-def buttonSelectionClick(button_xpath):   
+def buttonSelectionClick(button_xpath, browser):   
     # fill in evaluation form
     # select "A_perfect"(button_xpath = "//input[@value='2']") for all radio buttons
     button_select_list = browser.find_elements_by_xpath(button_xpath)
@@ -20,7 +20,7 @@ def buttonSelectionClick(button_xpath):
     
     return
 
-def nextPage():
+def nextPage(browser):
     # next page
     next_page_button = browser.find_element_by_xpath("//button[@name='submit-btn-saverecord']")
     browser.execute_script("arguments[0].scrollIntoView();", next_page_button)
@@ -29,7 +29,7 @@ def nextPage():
     
     return
     
-def previousPage():
+def previousPage(browser):
     # previous page
     previous_page_button = browser.find_element_by_xpath("//button[@name='submit-btn-saveprevpage']")
     browser.execute_script("arguments[0].scrollIntoView();", previous_page_button)
@@ -106,7 +106,7 @@ def autofiller(url, teacher_index_input):
 
         chrome_options.binary_location = chrome_bin
         
-        global browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
         # open form
         browser.get(url)
@@ -146,16 +146,16 @@ def autofiller(url, teacher_index_input):
             courses_name_list.append( course_name )
             
             # auto fillin
-            buttonSelectionClick(evaluation_button_xpath)
+            buttonSelectionClick(evaluation_button_xpath, browser)
             # exclude bedside learning courses
             if "分組老師" in course_name:
-                buttonSelectionClick(teacher_button_xpath)
+                buttonSelectionClick(teacher_button_xpath, browser)
             
             # next page, preventing sent out in the end
             if course_index == n_course:
                 break
             else:
-                nextPage()
+                nextPage(browser)
 
         # manually fillin (not open in alpha_v_1.0)
         """manualFillin(courses_name_list, n_course)"""
