@@ -178,6 +178,6 @@ def autofiller(url, teacher_index_input):
         return http_respond_list
 
     except Exception as e:
-        #raise e
+        raise e
         pass
     
