@@ -140,6 +140,9 @@ def autofiller(url, teacher_index_input):
         # Create the progress recorder instance
 	    # which we'll use to update the web page
         progress_recorder = ProgressRecorder(self)
+        for i in range(10):
+            progress_recorder.set_progress(i, 9, description="Processing")
+            time.sleep(0.5)
 
         # fill in form
         # loop pages of courses while recording names of all courses, 
@@ -187,14 +190,17 @@ def autofiller(url, teacher_index_input):
         finish_button.click()"""
         
         # setting return list for HttpRespond in views.py
-        http_respond_list = ["<p>Success filling:</p><ol>"]
+        """http_respond_list = ["<p>Success filling:</p><ol>"]
         for courses_name in courses_name_list:
             http_respond_list.append("<li>" + courses_name + "</li>")
         http_respond_list.append("</ol>")
         http_respond_list.append("<p>----Alpha v 1.0----</p>")
         http_respond_list.append("<a href=" + url + ">Please manually check and send your form!</a>")
 
-        return http_respond_list
+        return http_respond_list"""
+
+        # close all opened browser window and terminates the WebDriver session
+        driver.quit()
 
     except Exception as e:
         raise e
