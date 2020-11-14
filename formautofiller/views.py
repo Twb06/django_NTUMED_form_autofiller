@@ -23,7 +23,7 @@ def user_input(request):
         # Create Task
         autofill_task = long_running_operation.delay(user_autofill_url, user_clinical_teacher)
         # Get ID
-		task_id = autofill_task.task_id
+        task_id = autofill_task.task_id
 
         #result = autofiller(user_autofill_url, user_clinical_teacher)
         #return HttpResponse("Processing...")
