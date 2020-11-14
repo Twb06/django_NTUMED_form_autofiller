@@ -10,6 +10,9 @@ import re
 import time
 import os
 
+# Celery-progress
+from celery_progress.backend import ProgressRecorder
+
 def buttonSelectionClick(button_xpath, browser):   
     # fill in evaluation form
     # select "A_perfect"(button_xpath = "//input[@value='2']") for all radio buttons
@@ -134,6 +137,10 @@ def autofiller(url, teacher_index_input):
         #     "C_normal"(button_xpath = "//input[@value='4']")
         evaluation_button_xpath = "//td[@class='data choicematrix']//input[@value='2' and @type='radio']"
 
+        # Create the progress recorder instance
+	    # which we'll use to update the web page
+	    progress_recorder = ProgressRecorder(self)
+
         # fill in form
         # loop pages of courses while recording names of all courses, 
         # which can be manually fill in in the end of the process
@@ -143,6 +150,9 @@ def autofiller(url, teacher_index_input):
             soup = BeautifulSoup(html_source, 'html5lib')
             current_page = int( soup.find(id = "surveypagenum").string.split()[1] )
             
+            # Update progress on the web page
+            progress_recorder.set_progress(course_index, n_course, description="Processing")
+
             # prevent error from form which was not completed
             if course_index < current_page:
                 continue

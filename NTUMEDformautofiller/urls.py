@@ -33,6 +33,11 @@ urlpatterns += [
     path('', RedirectView.as_view(url='formautofiller/', permanent=True)),
 ]
 
+# link celery progress to the Django main router
+urlpatterns += [
+    path('celery-progress/', include('celery_progress.urls')),
+]
+
 # Use static() to add url mapping to serve static files during development (only)
 from django.conf import settings
 from django.conf.urls.static import static

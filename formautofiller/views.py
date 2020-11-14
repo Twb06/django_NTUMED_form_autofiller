@@ -19,10 +19,14 @@ def user_input(request):
         # process the data in form.cleaned_data as required
         user_autofill_url = form.cleaned_data["autofill_url"]
         user_clinical_teacher = form.cleaned_data["clinical_teacher"]
+        
+        # Create Task
+        autofill_task = long_running_operation.delay(user_autofill_url, user_clinical_teacher)
+        # Get ID
+		task_id = autofill_task.task_id
 
-        long_running_operation.delay(user_autofill_url, user_clinical_teacher)
         #result = autofiller(user_autofill_url, user_clinical_teacher)
-        return HttpResponse(result)
+        #return HttpResponse("Processing...")
         # redirect to a new URL:
         """return HttpResponseRedirect(reverse('all-borrowed') )"""
         """return HttpResponse(user_autofill_url)"""
@@ -34,9 +38,12 @@ def user_input(request):
         proposed_user_autofill_url = ""
         proposed_user_clinical_teacher = "1"
         form = AutofillUrlForm(initial={'autofill_url': proposed_user_autofill_url, 'clinical_teacher' : proposed_user_clinical_teacher})
+        # set task_id to 0 to hide process template
+        task = 0
 
     context = {
         'form': form,
+        'task_id': task_id,
     }
 
-    return render(request, 'formautofiller/user_input.html', context)
+    return render(request, 'formautofiller/progress.html', context)

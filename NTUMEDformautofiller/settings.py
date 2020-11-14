@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'formautofiller',
+    # Celery apps
+	'celery',
+    'celery_progress',
 ]
 
 MIDDLEWARE = [
