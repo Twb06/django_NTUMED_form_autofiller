@@ -154,7 +154,7 @@ def autofiller(url, teacher_index_input):
             # auto fillin
             buttonSelectionClick(evaluation_button_xpath, browser)
             # exclude bedside learning courses
-            if "分組老師" in course_name:
+            if "分組老師" or "實習老師" in course_name:
                 buttonSelectionClick(teacher_button_xpath, browser)
             
             # next page, preventing sent out in the end
@@ -163,18 +163,18 @@ def autofiller(url, teacher_index_input):
             else:
                 nextPage(browser)
 
-        # save and let user check result and manually sent form (open in alpha_v_1.0)
-        """save_button = browser.find_element_by_xpath("//button[@name= 'submit-btn-savereturnlater']")
-        save_button.click()"""
+        # save and let user check result and manually sent form (open in alpha_v_*.0)
+        save_button = browser.find_element_by_xpath("//button[@name= 'submit-btn-savereturnlater']")
+        save_button.click()
         
         # manually fillin (not open in alpha_v_1.0)
         """manualFillin(courses_name_list, n_course)"""
 
-        # sent (open in alpha_v_1.1)
-        nextPage()
+        # sent (open in alpha_v_*.1)
+        """nextPage()
 
         finish_button = browser.find_element_by_xpath("//button[@class = 'jqbuttonmed ui-button ui-corner-all ui-widget']")
-        finish_button.click()
+        finish_button.click()"""
         
         # setting return list for HttpRespond in views.py
         http_respond_list = ["<p>Success filling:</p><ol>"]

@@ -130,3 +130,8 @@ STATIC_URL = '/static/'
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+# Celery settings
+
+BROKER_URL = os.environ.get('CLOUDAMQP_URL')
+BROKER_POOL_LIMIT = 1   # for CloudAMQP Free Plan
