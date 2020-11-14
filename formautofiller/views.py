@@ -13,6 +13,8 @@ from .tasks import long_running_operation
 def user_input(request):
     # Create a form instance and populate it with data from the request (binding):
     form = AutofillUrlForm(request.POST)
+    # set task_id to 0 to hide process template
+    task_id = 0
 
     # Check if the form is valid:
     if form.is_valid():
@@ -38,7 +40,6 @@ def user_input(request):
         proposed_user_autofill_url = ""
         proposed_user_clinical_teacher = "1"
         form = AutofillUrlForm(initial={'autofill_url': proposed_user_autofill_url, 'clinical_teacher' : proposed_user_clinical_teacher})
-        # set task_id to 0 to hide process template
 
     context = {
         'form': form,
