@@ -139,7 +139,7 @@ def autofiller(url, teacher_index_input):
 
         # Create the progress recorder instance
 	    # which we'll use to update the web page
-	    progress_recorder = ProgressRecorder(self)
+        progress_recorder = ProgressRecorder(self)
 
         # fill in form
         # loop pages of courses while recording names of all courses, 
