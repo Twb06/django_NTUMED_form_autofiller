@@ -6,8 +6,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 from .forms import AutofillUrlForm
+from .tasks import long_running_operation
 
-from .autofiller import autofiller
+#from .autofiller import autofiller
 
 def user_input(request):
     # Create a form instance and populate it with data from the request (binding):
@@ -19,7 +20,8 @@ def user_input(request):
         user_autofill_url = form.cleaned_data["autofill_url"]
         user_clinical_teacher = form.cleaned_data["clinical_teacher"]
 
-        result = autofiller(user_autofill_url, user_clinical_teacher)
+        long_running_operation.delay(user_autofill_url, user_clinical_teacher)
+        #result = autofiller(user_autofill_url, user_clinical_teacher)
         return HttpResponse(result)
         # redirect to a new URL:
         """return HttpResponseRedirect(reverse('all-borrowed') )"""
@@ -29,7 +31,7 @@ def user_input(request):
 
     # If this is a GET (or any other method) create the default form.
     else:
-        proposed_user_autofill_url = "https://redcap.mc.ntu.edu.tw/surveys/?s="
+        proposed_user_autofill_url = ""
         proposed_user_clinical_teacher = "1"
         form = AutofillUrlForm(initial={'autofill_url': proposed_user_autofill_url, 'clinical_teacher' : proposed_user_clinical_teacher})
 
