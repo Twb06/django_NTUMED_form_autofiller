@@ -140,3 +140,5 @@ DATABASES['default'].update(db_from_env)
 
 BROKER_URL = os.environ.get('CLOUDAMQP_URL')
 BROKER_POOL_LIMIT = 1   # for CloudAMQP Free Plan
+result_backend = 'rpc://'
+result_persistent = False
