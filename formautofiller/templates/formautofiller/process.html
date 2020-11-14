@@ -16,7 +16,7 @@
 {% block progress_bar_js %}
 {% if task_id %}
 <script type="text/javascript">
-	// Progress Bar (JQuery)
+    // Progress Bar (JQuery)
 	$(function () {
 		var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
 		CeleryProgressBar.initProgressBar(progressUrl, {})

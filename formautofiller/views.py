@@ -39,7 +39,6 @@ def user_input(request):
         proposed_user_clinical_teacher = "1"
         form = AutofillUrlForm(initial={'autofill_url': proposed_user_autofill_url, 'clinical_teacher' : proposed_user_clinical_teacher})
         # set task_id to 0 to hide process template
-        task = 0
 
     context = {
         'form': form,
