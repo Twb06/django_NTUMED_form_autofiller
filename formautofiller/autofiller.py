@@ -13,8 +13,6 @@ import os
 # Celery-progress
 from celery_progress.backend import ProgressRecorder
 
-# logging
-import logging
 
 def buttonSelectionClick(button_xpath, browser):   
     # fill in evaluation form
@@ -121,7 +119,6 @@ def autofiller(url, teacher_index_input):
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
         print("start browser complete!@autofiller.py")
-        logger.info("start browser complete!@autofiller.py")
 
         # open form
         browser.get(url)
@@ -135,7 +132,6 @@ def autofiller(url, teacher_index_input):
             time.sleep(0.5)
 
         print("test celery progress complete!@autofiller.py")
-        logger.info("test celery progress complete!@autofiller.py")
 
         # select teacher
         teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"
