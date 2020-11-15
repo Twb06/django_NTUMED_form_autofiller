@@ -12,7 +12,7 @@ import logging
 #logging.config.dictConfig(LOGGING)
 logger = logging.getLogger(__name__)
 
-#from .autofiller import autofiller
+from .autofiller import autofiller
 
 def user_input(request):
     # Create a form instance and populate it with data from the request (binding):
