@@ -20,9 +20,8 @@
 	var userAutofillUrl = "{{ user_autofill_url }}";
 	function customMessage(userAutofillUrl) {
 		var SuccessMessage = "Please manually check and send your form!";
-		$( resultElement ).append(
-			$(SuccessMessage.link(userAutofillUrl))
-		);
+		progressBarElement.style.backgroundColor = this.barColors.success;
+        progressBarMessageElement.textContent = "Success! " + SuccessMessage.link(userAutofillUrl);
 	}
 
 	$(function () {
