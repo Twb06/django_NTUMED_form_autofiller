@@ -123,6 +123,11 @@ def autofiller(url, teacher_index_input):
         soup = BeautifulSoup(html_source, 'html5lib')
         time.sleep(1)
 
+        progress_recorder = ProgressRecorder(self)
+        for i in range(10):
+            progress_recorder.set_progress(i, 9, description="Processing")
+            time.sleep(0.5)
+
         # select teacher
         teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"
         # get total course num
@@ -139,10 +144,10 @@ def autofiller(url, teacher_index_input):
 
         # Create the progress recorder instance
 	    # which we'll use to update the web page
-        progress_recorder = ProgressRecorder(self)
+        """progress_recorder = ProgressRecorder(self)
         for i in range(10):
             progress_recorder.set_progress(i, 9, description="Processing")
-            time.sleep(0.5)
+            time.sleep(0.5)"""
 
         # fill in form
         # loop pages of courses while recording names of all courses, 
