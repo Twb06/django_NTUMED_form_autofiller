@@ -8,6 +8,10 @@ from django.urls import reverse
 from .forms import AutofillUrlForm
 from .tasks import long_running_operation
 
+import logging
+logging.config.dictConfig(LOGGING)
+logger = logging.getLogger('formautofiller')
+
 #from .autofiller import autofiller
 
 def user_input(request):
@@ -24,8 +28,10 @@ def user_input(request):
         
         # Create Task
         autofill_task = long_running_operation.delay(user_autofill_url, user_clinical_teacher)
+        logger.info("create task complete!@views.py")
         # Get ID
         task_id = autofill_task.task_id
+        logger.info("get task id complete!@views.py")
 
         #result = autofiller(user_autofill_url, user_clinical_teacher)
         #return HttpResponse("Processing...")

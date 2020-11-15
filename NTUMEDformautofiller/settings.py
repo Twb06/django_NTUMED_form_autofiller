@@ -141,3 +141,25 @@ DATABASES['default'].update(db_from_env)
 BROKER_URL = os.environ.get('CLOUDAMQP_URL')
 BROKER_POOL_LIMIT = 1   # for CloudAMQP Free Plan
 CELERY_RESULT_BACKEND='rpc://'
+
+# logging
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout
+
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+        },
+        "formautofiller": {
+            "handlers": ["console"],
+        }
+    }
+}

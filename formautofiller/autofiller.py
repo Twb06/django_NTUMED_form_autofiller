@@ -13,6 +13,9 @@ import os
 # Celery-progress
 from celery_progress.backend import ProgressRecorder
 
+# logging
+import logging
+
 def buttonSelectionClick(button_xpath, browser):   
     # fill in evaluation form
     # select "A_perfect"(button_xpath = "//input[@value='2']") for all radio buttons
@@ -117,6 +120,8 @@ def autofiller(url, teacher_index_input):
         
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
+        logger.info("start browser complete!@autofiller.py")
+
         # open form
         browser.get(url)
         html_source = browser.page_source
@@ -127,6 +132,8 @@ def autofiller(url, teacher_index_input):
         for i in range(10):
             progress_recorder.set_progress(i, 9, description="Processing")
             time.sleep(0.5)
+
+        logger.info("test celery progress complete!@autofiller.py")
 
         # select teacher
         teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"
