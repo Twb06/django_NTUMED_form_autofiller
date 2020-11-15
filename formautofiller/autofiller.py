@@ -118,7 +118,7 @@ def autofiller(task, url, teacher_index_input):
         
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
-        print("start browser complete!@autofiller.py")
+        #print("start browser complete!@autofiller.py")
 
         # open form
         browser.get(url)
@@ -126,7 +126,7 @@ def autofiller(task, url, teacher_index_input):
         soup = BeautifulSoup(html_source, 'html5lib')
         time.sleep(1)
 
-        print("test celery progress complete!@autofiller.py")
+        #print("test celery progress complete!@autofiller.py")
 
         # select teacher
         teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"

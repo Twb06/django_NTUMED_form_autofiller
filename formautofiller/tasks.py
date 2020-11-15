@@ -9,13 +9,13 @@ import time
 
 @shared_task(bind=True)
 def long_running_operation(self, user_autofill_url, user_clinical_teacher):
-    print("long running operation started!@tasks.py")
+    #print("long running operation started!@tasks.py")
 
-    #autofiller(self, user_autofill_url, user_clinical_teacher)
-    progress_recorder = ProgressRecorder(self)
+    autofiller(self, user_autofill_url, user_clinical_teacher)
+    """progress_recorder = ProgressRecorder(self)
     for i in range(10):
-        progress_recorder.set_progress(i, 9, description="Processing")
+        progress_recorder.set_progress(i, 9, description="Processing")"""
 
-    print("long running operation completed!@tasks.py")
+    #print("long running operation completed!@tasks.py")
 
-    return "<a href=" + user_autofill_url + ">Please manually check and send your form!</a>"
+    return "success!"
