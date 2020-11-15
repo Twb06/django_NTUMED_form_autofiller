@@ -143,6 +143,7 @@ BROKER_POOL_LIMIT = 1   # for CloudAMQP Free Plan
 CELERY_RESULT_BACKEND='rpc://'
 
 # logging
+import sys
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
