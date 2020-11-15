@@ -7,5 +7,6 @@ from .autofiller import autofiller
 
 @shared_task
 def long_running_operation(user_autofill_url, user_clinical_teacher):
+    print("long running operation started!@tasks.py")
     autofiller(user_autofill_url, user_clinical_teacher)
     return
