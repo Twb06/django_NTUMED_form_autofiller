@@ -35,6 +35,7 @@ def user_input(request):
         print("get task id complete!@views.py")
         logger.info("get task id complete!@views.py")
 
+        return render(request, 'formautofiller/progress.html', {'form': form, 'task_id': task_id})
         #result = autofiller(user_autofill_url, user_clinical_teacher)
         #return HttpResponse("Processing...")
         # redirect to a new URL:

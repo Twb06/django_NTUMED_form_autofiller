@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 
 
-from .autofiller import autofiller
+#from .autofiller import autofiller
 
 from celery_progress.backend import ProgressRecorder
 import time
