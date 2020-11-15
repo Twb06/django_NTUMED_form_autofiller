@@ -16,5 +16,5 @@ def long_running_operation(user_autofill_url, user_clinical_teacher):
         progress_recorder.set_progress(i, 9, description="Processing")
         time.sleep(0.5)
 
-    autofiller(self,user_autofill_url, user_clinical_teacher)
+    #autofiller(self,user_autofill_url, user_clinical_teacher)
     return
