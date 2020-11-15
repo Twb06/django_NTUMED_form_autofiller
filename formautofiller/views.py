@@ -19,6 +19,7 @@ def user_input(request):
     form = AutofillUrlForm(request.POST)
     # set task_id to 0 to hide process template
     task_id = 0
+    user_autofill_url = ""
 
     # Check if the form is valid:
     if form.is_valid():
@@ -52,7 +53,7 @@ def user_input(request):
     context = {
         'form': form,
         'task_id': task_id,
-        'user_autofill_url': user_autofill_url
+        'user_autofill_url': user_autofill_url,
     }
 
     return render(request, 'formautofiller/progress.html', context)
