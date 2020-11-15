@@ -126,11 +126,6 @@ def autofiller(task, url, teacher_index_input):
         soup = BeautifulSoup(html_source, 'html5lib')
         time.sleep(1)
 
-        progress_recorder = ProgressRecorder(task)
-        for i in range(10):
-            progress_recorder.set_progress(i, 9, description="Processing")
-            time.sleep(0.5)
-
         print("test celery progress complete!@autofiller.py")
 
         # select teacher
@@ -149,10 +144,7 @@ def autofiller(task, url, teacher_index_input):
 
         # Create the progress recorder instance
 	    # which we'll use to update the web page
-        """progress_recorder = ProgressRecorder(self)
-        for i in range(10):
-            progress_recorder.set_progress(i, 9, description="Processing")
-            time.sleep(0.5)"""
+        progress_recorder = ProgressRecorder(self)
 
         # fill in form
         # loop pages of courses while recording names of all courses, 

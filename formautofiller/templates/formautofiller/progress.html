@@ -17,9 +17,17 @@
 {% if task_id %}
 <script type="text/javascript">
     // Progress Bar (JQuery)
+	var userAutofillUrl = "{{ user_autofill_url }}";
+	function customMessage(userAutofillUrl) {
+		$( resultElement ).append(
+			$(str.link(userAutofillUrl)));
+}
 	$(function () {
 		var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
-		CeleryProgressBar.initProgressBar(progressUrl, {})
+		CeleryProgressBar.initProgressBar(progressUrl, {
+			onSuccess: customMessage,
+			pollInterval: 1000,
+		})
 	});
 </script>
 {% endif %}
