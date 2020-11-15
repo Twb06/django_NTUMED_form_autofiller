@@ -18,16 +18,21 @@
 <script type="text/javascript">
     // Progress Bar (JQuery)
 	var userAutofillUrl = "{{ user_autofill_url }}";
-	function customMessage(progressBarElement, progressBarMessageElement, userAutofillUrl) {
+	/*function customMessage(progressBarElement, progressBarMessageElement, userAutofillUrl) {
 		var SuccessMessage = "Please manually check and send your form!";
 		progressBarElement.style.backgroundColor = this.barColors.success;
-        progressBarMessageElement.textContent = "Success! " + userAutofillUrl;
+        progressBarMessageElement.innerHTML = "Success! " + SuccessMessage.link(userAutofillUrl);
+	}*/
+	function customResult(resultElement, result) {
+		$( resultElement ).append(
+			$('<p>').text('Sum of all seconds is ' + result)
+		);
 	}
 
 	$(function () {
 		var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
 		CeleryProgressBar.initProgressBar(progressUrl, {
-			onSuccess: customMessage,
+			onResult: customResult,
 			pollInterval: 1000,
 		})
 	});
