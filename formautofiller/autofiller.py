@@ -102,7 +102,7 @@ def previousPage(browser):
                 nextPage()
                 continue
 """
-def autofiller(url, teacher_index_input):
+def autofiller(task, url, teacher_index_input):
     try:
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -126,7 +126,7 @@ def autofiller(url, teacher_index_input):
         soup = BeautifulSoup(html_source, 'html5lib')
         time.sleep(1)
 
-        progress_recorder = ProgressRecorder(self)
+        progress_recorder = ProgressRecorder(task)
         for i in range(10):
             progress_recorder.set_progress(i, 9, description="Processing")
             time.sleep(0.5)
