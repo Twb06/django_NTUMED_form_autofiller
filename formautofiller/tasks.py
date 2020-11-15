@@ -7,7 +7,7 @@ from .autofiller import autofiller
 from celery_progress.backend import ProgressRecorder
 import time
 
-@shared_task
+@shared_task(bind=True)
 def long_running_operation(user_autofill_url, user_clinical_teacher):
     print("long running operation started!@tasks.py")
 
