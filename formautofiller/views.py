@@ -31,7 +31,7 @@ def user_input(request):
         print("create task complete!@views.py")
         logger.info("create task complete!@views.py")
         # Get ID
-        task_id = autofill_task.task_id
+        #task_id = autofill_task.task_id
         print("get task id complete!@views.py")
         logger.info("get task id complete!@views.py")
 
