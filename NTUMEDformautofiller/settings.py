@@ -138,8 +138,8 @@ DATABASES['default'].update(db_from_env)
 
 # Celery settings
 
-#CELERY_BROKER_URL = os.environ.get('CLOUDAMQP_URL')
-CELERY_BROKER_URL = "amqps://wukimstg:Yn1ZMA2kNvM2CLmu4dBKCESfofQ8i_Pk@chimpanzee.rmq.cloudamqp.com/wukimstg"
+BROKER_URL = os.environ.get('CLOUDAMQP_URL')
+#CELERY_BROKER_URL = "amqps://wukimstg:Yn1ZMA2kNvM2CLmu4dBKCESfofQ8i_Pk@chimpanzee.rmq.cloudamqp.com/wukimstg"
 BROKER_POOL_LIMIT = 1   # for CloudAMQP Free Plan
 CELERY_RESULT_BACKEND='rpc://'
 
