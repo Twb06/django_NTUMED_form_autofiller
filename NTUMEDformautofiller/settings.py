@@ -143,6 +143,13 @@ BROKER_URL = os.environ.get('CLOUDAMQP_URL', "django://")
 BROKER_POOL_LIMIT = 1   # for CloudAMQP Free Plan
 CELERY_RESULT_BACKEND='rpc://'
 
+CELERY_TASK_SERIALIZER = "json"
+CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
+CELERY_ALWAYS_EAGER = False
+
+if BROKER_URL == "django://":
+    INSTALLED_APPS += ("kombu.transport.django",)
+
 # logging
 import sys
 LOGGING = {

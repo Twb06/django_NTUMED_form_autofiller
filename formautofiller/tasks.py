@@ -17,4 +17,3 @@ def long_running_operation(self, user_autofill_url, user_clinical_teacher):
         #time.sleep(0.5)
 
     #autofiller(self,user_autofill_url, user_clinical_teacher)
-    return
