@@ -9,7 +9,7 @@ from .forms import AutofillUrlForm
 from .tasks import long_running_operation
 
 import logging
-logging.config.dictConfig(LOGGING)
+#logging.config.dictConfig(LOGGING)
 logger = logging.getLogger('formautofiller')
 
 #from .autofiller import autofiller
