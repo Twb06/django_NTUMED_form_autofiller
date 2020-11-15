@@ -120,6 +120,7 @@ def autofiller(url, teacher_index_input):
         
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
+        print("start browser complete!@autofiller.py")
         logger.info("start browser complete!@autofiller.py")
 
         # open form
@@ -133,6 +134,7 @@ def autofiller(url, teacher_index_input):
             progress_recorder.set_progress(i, 9, description="Processing")
             time.sleep(0.5)
 
+        print("test celery progress complete!@autofiller.py")
         logger.info("test celery progress complete!@autofiller.py")
 
         # select teacher
