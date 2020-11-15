@@ -27,7 +27,7 @@ def user_input(request):
         user_clinical_teacher = form.cleaned_data["clinical_teacher"]
         
         # Create Task
-        autofill_task = long_running_operation.delay(user_autofill_url, user_clinical_teacher)
+        #autofill_task = long_running_operation.delay(user_autofill_url, user_clinical_teacher)
         print("create task complete!@views.py")
         logger.info("create task complete!@views.py")
         # Get ID
@@ -35,8 +35,8 @@ def user_input(request):
         print("get task id complete!@views.py")
         logger.info("get task id complete!@views.py")
 
-        #result = autofiller(user_autofill_url, user_clinical_teacher)
-        #return HttpResponse("Processing...")
+        result = autofiller(user_autofill_url, user_clinical_teacher)
+        return HttpResponse("Processing...")
         # redirect to a new URL:
         """return HttpResponseRedirect(reverse('all-borrowed') )"""
         """return HttpResponse(user_autofill_url)"""
