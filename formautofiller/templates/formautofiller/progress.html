@@ -19,8 +19,9 @@
     // Progress Bar (JQuery)
 	var userAutofillUrl = "{{ user_autofill_url }}";
 	function customMessage(userAutofillUrl) {
+		var SuccessMessage = "Please manually check and send your form!";
 		$( resultElement ).append(
-			$(str.link(userAutofillUrl)));
+			$(SuccessMessage.link(userAutofillUrl)));
 }
 	$(function () {
 		var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
