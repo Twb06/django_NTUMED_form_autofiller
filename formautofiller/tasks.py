@@ -17,3 +17,5 @@ def long_running_operation(self, user_autofill_url, user_clinical_teacher):
         progress_recorder.set_progress(i, 9, description="Processing")
 
     print("long running operation completed!@tasks.py")
+
+    return "success!"
