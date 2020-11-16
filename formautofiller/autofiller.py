@@ -2,6 +2,7 @@ from selenium.webdriver.chrome import service
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from bs4 import BeautifulSoup
@@ -18,7 +19,7 @@ def buttonSelectionClick(button_xpath, browser):
     # fill in evaluation form
     # select "A_perfect"(button_xpath = "//input[@value='2']") for all radio buttons
     button_select_list = browser.find_elements_by_xpath(button_xpath)
-    scroll_into_view_status = False
+    #scroll_into_view_status = False
     for button_select in button_select_list:
         if not button_select.is_selected():
             # scroll the element into view to interact, 
@@ -26,7 +27,9 @@ def buttonSelectionClick(button_xpath, browser):
             if not scroll_into_view_status:
                 browser.execute_script("arguments[0].scrollIntoView();", button_select)
                 scroll_into_view_status = True
-            button_select.click()
+            #button_select.click()
+            browser.execute_script("arguments[0].click();", button_select)
+            print(button_select)
     
     return
 
