@@ -124,7 +124,7 @@ def autofiller(task, url, teacher_index_input):
         browser.get(url)
         html_source = browser.page_source
         soup = BeautifulSoup(html_source, 'html5lib')
-        time.sleep(1)
+        time.sleep(3)
 
         #print("test celery progress complete!@autofiller.py")
 
