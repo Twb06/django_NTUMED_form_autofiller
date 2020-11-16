@@ -29,7 +29,7 @@ def buttonSelectionClick(button_xpath, browser):
                 scroll_into_view_status = True
             #button_select.click()
             browser.execute_script("arguments[0].click();", button_select)
-            print(button_select)
+            #print(button_select)
     
     return
 
@@ -205,7 +205,7 @@ def autofiller(task, url, teacher_index_input):
         return http_respond_list"""
 
         # close all opened browser window and terminates the WebDriver session
-        driver.quit()
+        browser.quit()
 
     except Exception as e:
         raise e
