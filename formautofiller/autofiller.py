@@ -19,7 +19,7 @@ def buttonSelectionClick(button_xpath, browser):
     # fill in evaluation form
     # select "A_perfect"(button_xpath = "//input[@value='2']") for all radio buttons
     button_select_list = browser.find_elements_by_xpath(button_xpath)
-    #scroll_into_view_status = False
+    scroll_into_view_status = False
     for button_select in button_select_list:
         if not button_select.is_selected():
             # scroll the element into view to interact, 
