@@ -189,7 +189,7 @@ def autofiller(task, url, teacher_index_input):
         """manualFillin(courses_name_list, n_course)"""
 
         # sent (open in alpha_v_*.1)
-        nextPage()
+        nextPage(browser)
 
         finish_button = browser.find_element_by_xpath("//button[@class = 'jqbuttonmed ui-button ui-corner-all ui-widget']")
         finish_button.click()
