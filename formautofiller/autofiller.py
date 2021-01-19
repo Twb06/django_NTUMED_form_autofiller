@@ -105,7 +105,7 @@ def previousPage(browser):
                 nextPage()
                 continue
 """
-def autofiller(task, url, teacher_index_input):
+def autofiller(task, url, teacher_index_input, gross_group_input):
     try:
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -132,7 +132,7 @@ def autofiller(task, url, teacher_index_input):
         #print("test celery progress complete!@autofiller.py")
 
         # select teacher
-        teacher_button_xpath = "//td[@class='data col-5']//input[@value=" + teacher_index_input + "]"
+        teacher_button_xpath = "//td[@class='data col-5']//span[@class='choicehoriz']//input[@value=" + teacher_index_input + "]"
         # get total course num
         n_course = int( soup.find(id = "surveypagenum").string.split()[-1] )
         # list for storing courses' name
@@ -144,6 +144,18 @@ def autofiller(task, url, teacher_index_input):
         #     "B_good"(button_xpath = "//input[@value='3']")
         #     "C_normal"(button_xpath = "//input[@value='4']")
         evaluation_button_xpath = "//td[@class='data choicematrix']//input[@value='2' and @type='radio']"
+
+        # sequential teacher index for each gross group
+        # and create a list for button xpaths of gross group teachers
+        gross_group_teacher_dict = {
+            "0": ["1"], 
+            "1": ["2", "3", "4", "5"], 
+            "2": ["5", "2", "3", "4"], 
+            "3": ["4", "5", "2", "3"], 
+            "4": ["3", "4", "5", "2"]
+            }
+        gross_group_teacher_button_xpath = ["//td[@class='data col-5']//div[@class='choicevert']//input[@value=" + x + "]" for x in gross_group_teacher_dict[gross_group_input]]
+        gross_group_teacher_counter = 0
 
         # Create the progress recorder instance
 	    # which we'll use to update the web page
@@ -171,9 +183,12 @@ def autofiller(task, url, teacher_index_input):
             
             # auto fillin
             buttonSelectionClick(evaluation_button_xpath, browser)
-            # exclude bedside learning courses
+            # exclude bedside learning courses and gross learning courses
             if "分組老師" or "實習老師" in course_name:
                 buttonSelectionClick(teacher_button_xpath, browser)
+            if "解剖案例教學" in course_name:
+                buttonSelectionClick(gross_group_teacher_button_xpath[gross_group_teacher_counter], browser)
+                gross_group_teacher_counter += 1
             
             # next page, preventing sent out in the end
             if course_index == n_course:
@@ -182,17 +197,17 @@ def autofiller(task, url, teacher_index_input):
                 nextPage(browser)
 
         # save and let user check result and manually sent form (open in alpha_v_*.0)
-        """save_button = browser.find_element_by_xpath("//button[@name= 'submit-btn-savereturnlater']")
-        save_button.click()"""
+        save_button = browser.find_element_by_xpath("//button[@name= 'submit-btn-savereturnlater']")
+        save_button.click()
         
         # manually fillin (not open in alpha_v_1.0)
         """manualFillin(courses_name_list, n_course)"""
 
         # sent (open in alpha_v_*.1)
-        nextPage(browser)
+        """nextPage(browser)
 
         finish_button = browser.find_element_by_xpath("//button[@class = 'jqbuttonmed ui-button ui-corner-all ui-widget']")
-        finish_button.click()
+        finish_button.click()"""
         
         # setting return list for HttpRespond in views.py
         """http_respond_list = ["<p>Success filling:</p><ol>"]

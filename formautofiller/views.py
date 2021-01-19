@@ -26,9 +26,10 @@ def user_input(request):
         # process the data in form.cleaned_data as required
         user_autofill_url = form.cleaned_data["autofill_url"]
         user_clinical_teacher = form.cleaned_data["clinical_teacher"]
+        user_gross_group = form.cleaned_data["gross_group"]
         
         # Create Task
-        autofill_task = long_running_operation.delay(user_autofill_url, user_clinical_teacher)
+        autofill_task = long_running_operation.delay(user_autofill_url, user_clinical_teacher, user_gross_group)
         """print("create task complete!@views.py")
         logger.info("create task complete!@views.py")"""
         # Get ID
@@ -48,7 +49,13 @@ def user_input(request):
     else:
         proposed_user_autofill_url = ""
         proposed_user_clinical_teacher = "1"
-        form = AutofillUrlForm(initial={'autofill_url': proposed_user_autofill_url, 'clinical_teacher' : proposed_user_clinical_teacher})
+        proposed_user_gross_group = "0"
+        form = AutofillUrlForm(
+            initial={
+                'autofill_url': proposed_user_autofill_url, 
+                'clinical_teacher' : proposed_user_clinical_teacher,
+                'gross_group' : proposed_user_gross_group,
+                })
 
     context = {
         'form': form,

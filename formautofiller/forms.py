@@ -38,6 +38,19 @@ class AutofillUrlForm(forms.Form):
     )
     clinical_teacher = forms.ChoiceField(choices = TEACHER_CHOICES, required = True, help_text = "Choose your clinical teacher.")
     
+    NO_GROSS_CLASS = "0"
+    GROUP_A = "1"
+    GROUP_B = "2"
+    GROUP_C = "3"
+    GROUP_D = "4"
+    GROUP_CHOICES = (
+        (NO_GROSS_CLASS, "無Gross課"),
+        (GROUP_A, "第1組(I)"),
+        (GROUP_B, "第2組(II)"),
+        (GROUP_C, "第3組(III)"),
+        (GROUP_D, "第4組(IV)"),
+    )
+    gross_group = forms.ChoiceField(choices = GROUP_CHOICES, required = True, help_text = "Choose your gross group.")
     """def clean_autofill_url(self):
         data = self.cleaned_data['autofill_url']
         
