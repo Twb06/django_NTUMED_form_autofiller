@@ -145,10 +145,11 @@ def autofiller(task, url, teacher_index_input, gross_group_input):
         #     "C_normal"(button_xpath = "//input[@value='4']")
         evaluation_button_xpath = "//td[@class='data choicematrix']//input[@value='2' and @type='radio']"
 
+        # gross group course
         # sequential teacher index for each gross group
         # and create a list for button xpaths of gross group teachers
         gross_group_teacher_dict = {
-            "0": ["1"], 
+            "0": ["1", "1", "1", "1"], 
             "1": ["2", "3", "4", "5"], 
             "2": ["5", "2", "3", "4"], 
             "3": ["4", "5", "2", "3"], 

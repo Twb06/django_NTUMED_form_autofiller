@@ -7,50 +7,50 @@ class AutofillUrlForm(forms.Form):
     autofill_url = forms.URLField(validators = [URLValidator], required = True, help_text = "Enter your form url here.")
 
     NO_CLASS = "1"
-    TEACHER_A = "2"
-    TEACHER_B = "3"
-    TEACHER_C = "4"
-    TEACHER_D = "5"
-    TEACHER_E = "6"
-    TEACHER_F = "7"
-    TEACHER_G = "8"
-    TEACHER_H = "9"
-    TEACHER_I = "10"
-    TEACHER_J = "11"
-    TEACHER_K = "12"
-    TEACHER_L = "13"
-    TEACHER_M = "14"
-    TEACHER_CHOICES = (
+    GROUP_DISCUSSION_TEACHER_A = "2"
+    GROUP_DISCUSSION_TEACHER_B = "3"
+    GROUP_DISCUSSION_TEACHER_C = "4"
+    GROUP_DISCUSSION_TEACHER_D = "5"
+    GROUP_DISCUSSION_TEACHER_E = "6"
+    GROUP_DISCUSSION_TEACHER_F = "7"
+    GROUP_DISCUSSION_TEACHER_G = "8"
+    GROUP_DISCUSSION_TEACHER_H = "9"
+    GROUP_DISCUSSION_TEACHER_I = "10"
+    GROUP_DISCUSSION_TEACHER_J = "11"
+    GROUP_DISCUSSION_TEACHER_K = "12"
+    GROUP_DISCUSSION_TEACHER_L = "13"
+    GROUP_DISCUSSION_TEACHER_M = "14"
+    GROUP_DISCUSSION_TEACHER_CHOICES = (
         (NO_CLASS, "無課"),
-        (TEACHER_A, "楊荔丹"),
-        (TEACHER_B, "廖哲偉"),
-        (TEACHER_C, "許文峰"),
-        (TEACHER_D, "江宗賢"),
-        (TEACHER_E, "吳行健"),
-        (TEACHER_F, "陳論哲"),
-        (TEACHER_G, "陳建源"),
-        (TEACHER_H, "黃怡嘉"),
-        (TEACHER_I, "李孟叡"),
-        (TEACHER_J, "李百卿"),
-        (TEACHER_K, "潘建廷"),
-        (TEACHER_L, "黃邦碩"),
-        (TEACHER_M, "張嘉凌"),
+        (GROUP_DISCUSSION_TEACHER_A, "楊荔丹"),
+        (GROUP_DISCUSSION_TEACHER_B, "劉旺達"),
+        (GROUP_DISCUSSION_TEACHER_C, "許文峰"),
+        (GROUP_DISCUSSION_TEACHER_D, "江宗賢"),
+        (GROUP_DISCUSSION_TEACHER_E, "吳行健"),
+        (GROUP_DISCUSSION_TEACHER_F, "陳論哲"),
+        (GROUP_DISCUSSION_TEACHER_G, "陳建源"),
+        (GROUP_DISCUSSION_TEACHER_H, "黃怡嘉"),
+        (GROUP_DISCUSSION_TEACHER_I, "李孟叡"),
+        (GROUP_DISCUSSION_TEACHER_J, "李百卿"),
+        (GROUP_DISCUSSION_TEACHER_K, "潘建廷"),
+        (GROUP_DISCUSSION_TEACHER_L, "黃邦碩"),
+        (GROUP_DISCUSSION_TEACHER_M, "張嘉凌"),
     )
-    clinical_teacher = forms.ChoiceField(choices = TEACHER_CHOICES, required = True, help_text = "Choose your clinical teacher.")
+    clinical_teacher = forms.ChoiceField(choices = GROUP_DISCUSSION_TEACHER_CHOICES, required = True, help_text = "Choose your clinical teacher.")
     
     NO_GROSS_CLASS = "0"
-    GROUP_A = "1"
-    GROUP_B = "2"
-    GROUP_C = "3"
-    GROUP_D = "4"
-    GROUP_CHOICES = (
+    GROSS_GROUP_A = "1"
+    GROSS_GROUP_B = "2"
+    GROSS_GROUP_C = "3"
+    GROSS_GROUP_D = "4"
+    GROSS_GROUP_CHOICES = (
         (NO_GROSS_CLASS, "無Gross課"),
-        (GROUP_A, "第1組(I)"),
-        (GROUP_B, "第2組(II)"),
-        (GROUP_C, "第3組(III)"),
-        (GROUP_D, "第4組(IV)"),
+        (GROSS_GROUP_A, "第1組(I)"),
+        (GROSS_GROUP_B, "第2組(II)"),
+        (GROSS_GROUP_C, "第3組(III)"),
+        (GROSS_GROUP_D, "第4組(IV)"),
     )
-    gross_group = forms.ChoiceField(choices = GROUP_CHOICES, required = True, help_text = "Choose your gross group.")
+    gross_group = forms.ChoiceField(choices = GROSS_GROUP_CHOICES, required = True, help_text = "Choose your gross group.")
     """def clean_autofill_url(self):
         data = self.cleaned_data['autofill_url']
         
