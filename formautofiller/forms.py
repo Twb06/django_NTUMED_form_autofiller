@@ -1,12 +1,19 @@
+from formautofiller import models
+
 from django import forms
+from django.forms import widgets
+from django.forms import fields
+from django.forms import ModelChoiceField
+from django.forms import ModelChoiceField
+
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
     
 class AutofillUrlForm(forms.Form):
-    autofill_url = forms.URLField(validators = [URLValidator], required = True, help_text = "Enter your form url here.")
+    autofill_url = forms.URLField(validators = [URLValidator], required = True, help_text = "貼上問卷網址")
 
-    NO_CLASS = "0"
+    """NO_CLASS = "0"
     GROUP_DISCUSSION_TEACHER_A = "1"
     GROUP_DISCUSSION_TEACHER_B = "2"
     GROUP_DISCUSSION_TEACHER_C = "3"
@@ -36,8 +43,13 @@ class AutofillUrlForm(forms.Form):
         (GROUP_DISCUSSION_TEACHER_L, "黃邦碩"),
         (GROUP_DISCUSSION_TEACHER_M, "張嘉凌"),
     )
-    clinical_teacher = forms.ChoiceField(choices = GROUP_DISCUSSION_TEACHER_CHOICES, required = True, help_text = "Choose your clinical teacher.")
-    
+    clinical_teacher = forms.ChoiceField(choices = GROUP_DISCUSSION_TEACHER_CHOICES, required = True, help_text = "Choose your clinical teacher.")"""
+    clinical_teacher = forms.ModelChoiceField(
+        queryset = models.GroupDiscussionTeacher.objects.all(),
+        empty_label = "請選擇臨床老師",
+        help_text = "請選擇臨床老師",
+    )
+
     NO_GROSS_CLASS = "0"
     GROSS_GROUP_A = "1"
     GROSS_GROUP_B = "2"
@@ -50,7 +62,9 @@ class AutofillUrlForm(forms.Form):
         (GROSS_GROUP_C, "第3組(III)"),
         (GROSS_GROUP_D, "第4組(IV)"),
     )
-    gross_group = forms.ChoiceField(choices = GROSS_GROUP_CHOICES, required = True, help_text = "Choose your gross group.")
+    gross_group = forms.ChoiceField(choices = GROSS_GROUP_CHOICES, required = True, help_text = "請選擇Gross分組(當周沒有Gross課不用動這個選項)")
+
+    auto_sent = forms.BooleanField(help_text = "是否自動送出問卷?(建議前幾周自行檢查)")
     """def clean_autofill_url(self):
         data = self.cleaned_data['autofill_url']
         
