@@ -22,7 +22,7 @@ def user_input(request):
     user_autofill_url = ""
 
     # Check if the form is valid:
-    if form.is_valid():
+    if request.method == 'POST' and form.is_valid():
         # process the data in form.cleaned_data as required
         user_autofill_url = form.cleaned_data["autofill_url"]
         user_clinical_teacher = form.cleaned_data["clinical_teacher"].index
