@@ -147,8 +147,8 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
 CELERY_ALWAYS_EAGER = False
 
-if BROKER_URL == "django://":
-    INSTALLED_APPS += ("kombu.transport.django",)
+"""if BROKER_URL == "django://":
+    INSTALLED_APPS += ("kombu.transport.django",)"""
 
 # logging
 import sys
