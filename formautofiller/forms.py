@@ -22,21 +22,21 @@ class AutofillUrlForm(forms.Form):
     GROUP_DISCUSSION_TEACHER_M = "13"
     GROUP_DISCUSSION_TEACHER_CHOICES = (
         (NO_CLASS, "無課"),
-        (GROUP_DISCUSSION_TEACHER_A, "楊荔丹"),
-        (GROUP_DISCUSSION_TEACHER_B, "劉旺達"),
-        (GROUP_DISCUSSION_TEACHER_C, "許文峰"),
-        (GROUP_DISCUSSION_TEACHER_D, "江宗賢"),
-        (GROUP_DISCUSSION_TEACHER_E, "吳行健"),
-        (GROUP_DISCUSSION_TEACHER_F, "陳論哲"),
-        (GROUP_DISCUSSION_TEACHER_G, "陳建源"),
-        (GROUP_DISCUSSION_TEACHER_H, "黃怡嘉"),
-        (GROUP_DISCUSSION_TEACHER_I, "李孟叡"),
-        (GROUP_DISCUSSION_TEACHER_J, "李百卿"),
-        (GROUP_DISCUSSION_TEACHER_K, "潘建廷"),
-        (GROUP_DISCUSSION_TEACHER_L, "黃邦碩"),
-        (GROUP_DISCUSSION_TEACHER_M, "張嘉凌"),
+        (GROUP_DISCUSSION_TEACHER_A, "A組"),
+        (GROUP_DISCUSSION_TEACHER_B, "B組"),
+        (GROUP_DISCUSSION_TEACHER_C, "C組"),
+        (GROUP_DISCUSSION_TEACHER_D, "D組"),
+        (GROUP_DISCUSSION_TEACHER_E, "E組"),
+        (GROUP_DISCUSSION_TEACHER_F, "F組"),
+        (GROUP_DISCUSSION_TEACHER_G, "G組"),
+        (GROUP_DISCUSSION_TEACHER_H, "H組"),
+        (GROUP_DISCUSSION_TEACHER_I, "I組"),
+        (GROUP_DISCUSSION_TEACHER_J, "J組"),
+        (GROUP_DISCUSSION_TEACHER_K, "K組"),
+        (GROUP_DISCUSSION_TEACHER_L, "L組"),
+        (GROUP_DISCUSSION_TEACHER_M, "M組"),
     )
-    clinical_teacher = forms.ChoiceField(choices = GROUP_DISCUSSION_TEACHER_CHOICES, required = True, help_text = "Choose your clinical teacher.")
+    clinical_teacher = forms.ChoiceField(choices = GROUP_DISCUSSION_TEACHER_CHOICES, required = True, help_text = "請選擇你的臨床分組老師")
     
     NO_GROSS_CLASS = "0"
     GROSS_GROUP_A = "1"
