@@ -8,10 +8,10 @@ from celery_progress.backend import ProgressRecorder
 import time
 
 @shared_task(bind=True)
-def long_running_operation(self, user_autofill_url, user_clinical_teacher, user_gross_group):
+def long_running_operation(self, user_autofill_url, user_clinical_teacher, user_gross_group, user_auto_sent):
     #print("long running operation started!@tasks.py")
 
-    autofiller(self, user_autofill_url, user_clinical_teacher, user_gross_group)
+    autofiller(self, user_autofill_url, user_clinical_teacher, user_gross_group, user_auto_sent)
     """progress_recorder = ProgressRecorder(self)
     for i in range(10):
         progress_recorder.set_progress(i, 9, description="Processing")"""

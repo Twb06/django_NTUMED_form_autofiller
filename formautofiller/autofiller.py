@@ -105,7 +105,7 @@ def previousPage(browser):
                 nextPage()
                 continue
 """
-def autofiller(task, url, teacher_index_input, gross_group_input):
+def autofiller(task, url, teacher_index_input, gross_group_input, auto_sent_input):
     try:
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -205,10 +205,11 @@ def autofiller(task, url, teacher_index_input, gross_group_input):
         """manualFillin(courses_name_list, n_course)"""
 
         # sent (open in alpha_v_*.1)
-        """nextPage(browser)
+        if (auto_sent_input == True):
+            nextPage(browser)
 
-        finish_button = browser.find_element_by_xpath("//button[@class = 'jqbuttonmed ui-button ui-corner-all ui-widget']")
-        finish_button.click()"""
+            finish_button = browser.find_element_by_xpath("//button[@class = 'jqbuttonmed ui-button ui-corner-all ui-widget']")
+            finish_button.click()
         
         # setting return list for HttpRespond in views.py
         """http_respond_list = ["<p>Success filling:</p><ol>"]
