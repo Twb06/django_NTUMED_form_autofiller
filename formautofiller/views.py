@@ -26,8 +26,6 @@ def user_input(request):
         # process the data in form.cleaned_data as required
         user_autofill_url = form.cleaned_data["autofill_url"]
         user_clinical_teacher = form.cleaned_data["clinical_teacher"]
-        print(form.cleaned_data["clinical_teacher"])
-        print(form.cleaned_data["gross_group"])
         user_gross_group = form.cleaned_data["gross_group"]
         user_auto_sent = form.cleaned_data["auto_sent"]
         
