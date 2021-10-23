@@ -36,7 +36,7 @@ class AutofillUrlForm(forms.Form):
         (GROUP_DISCUSSION_TEACHER_L, "L組"),
         (GROUP_DISCUSSION_TEACHER_M, "M組"),
     )
-    clinical_teacher = forms.ChoiceField(choices = GROUP_DISCUSSION_TEACHER_CHOICES, required = True, help_text = "請選擇你的臨床分組老師")
+    clinical_teacher = forms.ChoiceField(choices = GROUP_DISCUSSION_TEACHER_CHOICES, required = True, help_text = "請選擇你的臨床分組")
     
     NO_GROSS_CLASS = "0"
     GROSS_GROUP_A = "1"
