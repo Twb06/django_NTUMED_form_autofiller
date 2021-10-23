@@ -52,7 +52,7 @@ class AutofillUrlForm(forms.Form):
     )
     gross_group = forms.ChoiceField(choices = GROSS_GROUP_CHOICES, required = True, help_text = "請選擇Gross分組(當周沒有Gross課不用動這個選項)")
 
-    auto_sent = forms.BooleanField(required = False, help_text = "是否自動送出問卷?(建議前幾周自行檢查)")
+    auto_sent = forms.BooleanField(required = False, help_text = "是否自動送出問卷?(建議自行檢查幾周確認沒問題再啟用)")
     """def clean_autofill_url(self):
         data = self.cleaned_data['autofill_url']
         
