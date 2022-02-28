@@ -134,7 +134,7 @@ def autofiller(task, url, teacher_index_input, gross_group_input, auto_sent_inpu
         # select teacher
         teacher_button_xpath = "//td[@class='data col-5']//span[@class='choicehoriz']//input[@value=" + teacher_index_input + "]"
         # get total course num
-        n_course = int( soup.find(id = "surveypagenum").string.split()[-1] )
+        n_course = int( soup.find(id = "surveypagenum").string.split()[-2] )
         # list for storing courses' name
         courses_name_list = []
 
